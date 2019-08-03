@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
+//购物车控制器
 @Controller
 public class CartController
 {
