@@ -38,7 +38,7 @@ public class OrderController {
         String userId = (String)request.getAttribute("userId");
         String nickName = (String)request.getAttribute("nickName");
 
-        // 防止订单的重复提交
+        // 防止订单的重复提交1
         boolean b = orderService.checkTradeCode(userId,tradeCode);
 
         if(b){
