@@ -87,7 +87,7 @@ public class CartController
             }
         }else{
             // 取缓存中的数据
-            cartInfos = cartService.getCartListFromCache(userId);
+                cartInfos = cartService.getCartListFromCache(userId);
         }
 
         map.put("cartList",cartInfos);
@@ -114,7 +114,7 @@ public class CartController
     public String addToCart(HttpServletResponse response, HttpServletRequest request, String skuId , int num){
 
         // 购物车添加逻辑
-        SkuInfo skuInfo = skuService.getSkuById(skuId, "0.0.0.0");
+        SkuInfo skuInfo = skuService.getSkuInfo(skuId);
         CartInfo cartInfo = new CartInfo();
         cartInfo.setCartPrice(skuInfo.getPrice());
         cartInfo.setSkuNum(num);
@@ -171,6 +171,7 @@ public class CartController
         return "redirect:/success.html";
     }
 
+    //判断购物车是否新的
     private boolean if_new_cart(List<CartInfo> cartInfos, CartInfo cartInfo) {
 
         boolean b = true;
@@ -183,6 +184,10 @@ public class CartController
         return b;
     }
 
+    /**
+     * 购物车添加成功
+     * @return
+     */
     @LoginRequire(isNeededSuccess = false)
     @RequestMapping("cartAddSuccess")
     public String cartAddSuccess(){

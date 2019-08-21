@@ -18,6 +18,9 @@
             ON skv.sale_attr_id = sa.sale_attr_id
             AND skv.sale_attr_value_id = sav.id
             AND skv.sku_id = #{skuId}
+            ORDER BY
+		    sav.sale_attr_id,
+		    sav.id
     </select>
 
     <resultMap id="selectSpuSaleAttrListBySpuIdMap" type="com.atguigu.gmall.bean.SpuSaleAttr" autoMapping="true">

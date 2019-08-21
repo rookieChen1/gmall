@@ -97,7 +97,7 @@ public class OrderController {
             cartService.flushCache(userId);
 
             // 重定向到支付页面
-            return "redirect:http://120.79.169.122:8090/index?outTradeNo="+orderInfoForDb.getOutTradeNo()+"&totalAmount="+getCartSum(cartInfos);
+            return "redirect:http://localhost:8090/index?outTradeNo="+orderInfoForDb.getOutTradeNo()+"&totalAmount="+getCartSum(cartInfos);
         }else{
             return "tradeFail";
         }

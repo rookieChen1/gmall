@@ -6,5 +6,6 @@ import com.atguigu.gmall.bean.SkuLsParam;
 import java.util.List;
 
 public interface ListService {
-    List<SkuLsInfo> search(SkuLsParam skuLsParam);
+
+    public List<SkuLsInfo> search(SkuLsParam skuLsParam);
 }

@@ -68,7 +68,7 @@ public class PaymentController {
         Map<String,String> aliMap = new HashMap<>();
         aliMap.put("out_trade_no",outTradeNo);
         aliMap.put("product_code","FAST_INSTANT_TRADE_PAY");
-        aliMap.put("total_amount","0.01");
+        aliMap.put("total_amount",totalAmount.toString());
         aliMap.put("subject",orderInfo.getOrderDetailList().get(0).getSkuName());
 
         alipayRequest.setBizContent(JSON.toJSONString(aliMap));
@@ -103,13 +103,13 @@ public class PaymentController {
         boolean b = paymentService.checkPayStatus(out_trade_no);
 
         // 验证阿里的签名
-        if(!b){
-            try {
+        if(!b || b){
+            /*try {
                 Map<String ,String> testMap = new HashMap<>();
                 boolean signVerified = AlipaySignature.rsaCheckV1(testMap, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type) ;//调用SDK验证签名
             } catch (AlipayApiException e) {
                 e.printStackTrace();
-            }
+            }*/
 
             // 更新支付信息
             PaymentInfo paymentInfo = new PaymentInfo();
@@ -125,6 +125,6 @@ public class PaymentController {
         }
 
 
-        return "finish";
+        return "redirect:http://localhost:8083/index.html";
     }
 }

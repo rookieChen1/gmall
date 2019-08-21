@@ -53,7 +53,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
                         ip = "127.0.0.1";
                     }
                 }
-                String doGet = HttpClientUtil.doGet("http://passport.gmall.com:8085/verify?token="+token+"&currentIp="+ip);
+                String doGet = HttpClientUtil.doGet("http://localhost:8085/verify?token="+token+"&currentIp="+ip);
 
                 if(doGet.equals("success")){
                     // 刷新用户cookie中的token
@@ -69,7 +69,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
             // token为空或者验证不通过
             if(neededSuccess==true){
                 String returnUrl = request.getRequestURL().toString();
-                response.sendRedirect("http://passport.gmall.com:8085/index?returnUrl="+returnUrl);
+                response.sendRedirect("http://localhost:8085/index?returnUrl="+returnUrl);
                 return false;
             }
 

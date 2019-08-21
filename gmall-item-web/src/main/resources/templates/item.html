@@ -2,12 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-		<meta charset="UTF-8">
-		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>商品详情</title>
 		<link rel="stylesheet" type="text/css" href="/scss/shop.css" />
 		<link rel="stylesheet" type="text/css" href="/scss/main.css"/>
 		<link rel="stylesheet" href="/scss/header.css" />
 		<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css"/>
+		<script type="text/javascript" src="/easyui/jquery.min.js"></script>
+		<script type="text/javascript" src="/layer/layer.js"></script>
 	</head>
 	<body>
 		<div id="max">
@@ -15,7 +17,7 @@
 
 					<div class="min">
 						<ul class="header_ul_left">
-							<li class="glyphicon glyphicon-home"> <a href="shouye.html" class="aa">首页</a></li>
+							<li class="glyphicon glyphicon-home"> <a href="http://192.168.2.69:8083/index" class="aa">首页</a></li>
 							<li class="glyphicon glyphicon-map-marker"> <a href="javascript:;">北京</a>
 								<ol id="beijing">
 									<li style="background: red;"><a href="javascript:;" style="color: white;">北京</a></li>
@@ -44,7 +46,7 @@
 									<li><a href="javascript:;">贵州</a></li>
 									<li><a href="javascript:;">云南</a></li>
 									<li><a href="javascript:;">西藏</a></li>
-									<li><a href="javascript:;">陕西</a></li>
+										<li><a href="javascript:;">陕西</a></li>
 									<li><a href="javascript:;">甘肃</a></li>
 									<li><a href="javascript:;">青海</a></li>
 									<li><a href="javascript:;">宁夏</a></li>
@@ -67,7 +69,7 @@
 				<nav>
 				<div class="nav_min">
 					<div class="nav_top">
-						<div class="nav_top_one"><a href="#"><img src="/img/logo1.jpg"/></a></div>
+						<div class="nav_top_one"><a href="http://192.168.2.69:8083/index"><img src="/img/logo1.jpg"/></a></div>
 						<div class="nav_top_two"><input type="text"/><button>搜索</button></div>
 						<div class="nav_top_three"><a href="../JD_Shop/One_JDshop.html">我的购物车</a><span class="glyphicon glyphicon-shopping-cart"></span>
 							<div class="nav_top_three_1">
@@ -155,7 +157,7 @@
 						</div>
  
 						<div class="box-yuyue">
-							<div class="yuyue-one">
+							<div class="yuyue-one" th:text="${skuInfo?.skuDesc}">
 								 热卖促销中
 							</div>
 							<div class="yuyue-two">
@@ -261,9 +263,9 @@
 
 						<div class="box-btns clear">
 							<div class="box-btns-one">
-								<form id="itemForm" action="http://cart.gmall.com:8084/addToCart" method="post">
+								<form id="itemForm" action="http://localhost:8084/addToCart" method="post">
 									<input type="text" name="num" id=""  value="1"/>
-									<input type="hidden" name="skuId"  th:value="${skuInfo?.id}" />
+									<input  type="hidden" name="skuId"  th:value="${skuInfo?.id}" />
 
 									<div class="box-btns-one1">
 
@@ -1007,6 +1009,7 @@
 			<span>购物车还没有商品，赶紧选购吧！</span>
 		</div>
 	</body>
+
 	<input type="text" th:value="${valuesSkuJson}" id="valuesSkuJson"/>
 	<script src="/js/jquery1.9.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/js.js" type="text/javascript" charset="utf-8"></script>
@@ -1020,23 +1023,25 @@
         }
 
         function switchSkuId() {
-            // 被选中属性
-			var key = "";
-			var selectValueRows = $(".redborder div");
-			$(selectValueRows).each(function(i,div){
-			    var saleAttrValueId = $(div).attr("value");
-				key = key +"|"+saleAttrValueId;
-			})
-			// 匹配hash表
-			var hashStr = $("#valuesSkuJson").val();
-			var hashJson = JSON.parse(hashStr);
-			var v = hashJson[key];
-			var skuId = $("#skuId").val();
-			if(v&&v!=skuId){
-			    // 跳转新的sku
-				window.location.href="/"+v+".html";
+           //被选中的属性
+			var key="";
+			var selectValueRows=$(".redborder div");
+			$(selectValueRows).each(function(i,div) {
+				var saleAttrValueId=$(div).attr("value");
+				key=key+"|"+saleAttrValueId;
+            });
+
+            // 匹配hash表
+            var hashStr = $("#valuesSkuJson").val();
+            var hashJson=JSON.parse(hashStr);
+            var v=hashJson[key];
+            var skuId=$("#skuId").val();
+			if(v==undefined){
+                layer.msg("暂无该商品");
+			}else if(v&&v!=skuId){
+                window.location.href="/"+v+".html";
 			}else{
-			    // 什么都不干
+
 			}
         }
 	</script>

@@ -2,18 +2,26 @@ package com.atguigu.gmall.service;
 
 import com.atguigu.gmall.bean.BaseAttrInfo;
 import com.atguigu.gmall.bean.SkuInfo;
-import com.atguigu.gmall.bean.SkuLsInfo;
+import com.atguigu.gmall.bean.SpuImage;
+import com.atguigu.gmall.bean.SpuSaleAttr;
 
 import java.util.List;
 
 public interface SkuService {
-    List<SkuInfo> skuInfoListBySpu(String spuId);
 
-    void saveSku(SkuInfo skuInfo);
+    public List<SkuInfo> getSkuInfoList(String spuId);
 
-    SkuInfo getSkuById(String skuId,String remoteAddr);
+    public List<BaseAttrInfo> getAttrInfoList(String catalog3Id);
 
-    List<SkuInfo> skuSaleAttrValueListBySpu(String spuId);
+    public List<SpuSaleAttr> getSpuSaleAttrList(String spuId);
 
-    List<SkuInfo> getMySkuInfo(String catalog3Id);
+    public List<SpuImage> getSpuImageList(String spuId);
+
+    public void saveSku(SkuInfo skuInfo);
+
+    public SkuInfo getSkuInfo(String skuId);
+
+    public List<SkuInfo> skuSaleAttrValueListBySpu(String spuId);
+
+    public List<SkuInfo> getMySkuInfo(String catalog3Id);
 }

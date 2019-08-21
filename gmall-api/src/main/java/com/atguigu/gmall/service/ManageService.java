@@ -7,9 +7,10 @@ import com.atguigu.gmall.bean.BaseCatalog3;
 import java.util.List;
 
 public interface ManageService {
-    List<BaseCatalog1> getCatalog1();
 
-    List<BaseCatalog2> getCatalog2(String catalog1Id);
+    public List<BaseCatalog1> getCatalog1();
 
-    List<BaseCatalog3> getCatalog3(String catalog2Id);
+    public List<BaseCatalog2> getCatalog2(String catalog1Id);
+
+    public List<BaseCatalog3> getCatalog3(String catalog2Id);
 }

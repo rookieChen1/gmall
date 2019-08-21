@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.atguigu.gmall.bean.CartInfo;
 import com.atguigu.gmall.bean.UserInfo;
 import com.atguigu.gmall.service.CartService;
+import com.atguigu.gmall.service.UserInfoService;
 import com.atguigu.gmall.service.UserService;
 import com.atguigu.gmall.util.CookieUtil;
 import com.atguigu.gmall.util.JwtUtil;

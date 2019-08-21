@@ -6,6 +6,7 @@ import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-public interface SkuSaleAttrValueMapper extends Mapper<SkuSaleAttrValue> {
-    List<SkuInfo> selectSkuSaleAttrValueListBySpu(String spuId);
+public interface SkuSaleAttrValueMapper extends Mapper<SkuSaleAttrValue>{
+
+    public List<SkuInfo> selectSkuSaleAttrValueListBySpu(String spuId);
 }

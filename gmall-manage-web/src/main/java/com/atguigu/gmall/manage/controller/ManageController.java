@@ -17,39 +17,29 @@ public class ManageController {
     @Reference
     ManageService manageService;
 
-    @RequestMapping("index")
-    public String index(){
+    @RequestMapping("/index")
+    public String toIndexPage(){
         return "index";
     }
 
-    @RequestMapping("getCatalog1")
+    //获得一级分类菜单
     @ResponseBody
+    @RequestMapping("/getCatalog1")
     public List<BaseCatalog1> getCatalog1(){
-
-        // 调用后台查询一级分类的集合
-        List<BaseCatalog1> catalog1s = manageService.getCatalog1();
-        return catalog1s;
+        return manageService.getCatalog1();
     }
 
-    @RequestMapping("getCatalog2")
+    //获得二级分类菜单
     @ResponseBody
+    @RequestMapping("/getCatalog2")
     public List<BaseCatalog2> getCatalog2(String catalog1Id){
-
-        // 调用后台查询一级分类的集合
-        List<BaseCatalog2> catalog2s = manageService.getCatalog2(catalog1Id);
-        return catalog2s;
+        return manageService.getCatalog2(catalog1Id);
     }
 
-    @RequestMapping("getCatalog3")
+    //获得三级分类菜单
     @ResponseBody
+    @RequestMapping("/getCatalog3")
     public List<BaseCatalog3> getCatalog3(String catalog2Id){
-
-        // 调用后台查询一级分类的集合
-        List<BaseCatalog3> catalog3s = manageService.getCatalog3(catalog2Id);
-        return catalog3s;
+        return manageService.getCatalog3(catalog2Id);
     }
-
-
-
-
 }
