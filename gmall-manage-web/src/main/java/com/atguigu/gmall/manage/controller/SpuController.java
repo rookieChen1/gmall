@@ -9,6 +9,7 @@ import com.atguigu.gmall.service.SpuInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -54,4 +55,12 @@ public class SpuController {
         String imgUrl = GmallUploadUtil.uploadImage(multipartFile);
         return imgUrl;
     }
+    //删除spu
+    @RequestMapping(value = "delSPU",method = RequestMethod.POST)
+    @ResponseBody
+    public String delSpuInfo(String id){
+        spuInfoService.delSpu(id);
+        return "success";
+    }
+
 }

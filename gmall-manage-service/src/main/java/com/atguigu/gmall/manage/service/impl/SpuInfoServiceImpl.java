@@ -95,4 +95,12 @@ public class SpuInfoServiceImpl implements SpuInfoService {
         map.put("spuId",spuId);
         return spuSaleAttrMapper.selectSpuSaleAttrListBySpuId(map);
     }
+
+    //删除spu
+    @Override
+    public void delSpu(String id) {
+        SpuInfo spuInfo = new SpuInfo();
+        spuInfo.setId(id);
+        spuInfoMapper.delete(spuInfo);
+    }
 }

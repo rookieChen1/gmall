@@ -15,6 +15,7 @@ public class GmallUploadUtil {
         String path = GmallUploadUtil.class.getClassLoader().getResource("tracker.conf").getPath();
 
         try {
+
             ClientGlobal.init(path);
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,7 +47,7 @@ public class GmallUploadUtil {
         }
 
         //  fdfs的文件路径
-        String url = "http://192.168.222.20";
+        String url = "http://120.79.169.122";
 
         for (int i = 0; i < gifs.length; i++) {
             url =url +"/"+gifs[i];

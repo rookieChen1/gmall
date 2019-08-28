@@ -17,4 +17,6 @@ public interface SpuInfoService {
     public SpuInfo getSpuInfo(String skuId);
 
     public List<SpuSaleAttr> getSaleAttrList(String skuId);
+
+    public void delSpu(String id);
 }

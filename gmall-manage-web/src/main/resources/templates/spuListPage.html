@@ -22,7 +22,7 @@
             <div style="margin-bottom:5px">
                 <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addSpuInfo()">添加</a>
                 <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editSpuInfo()">编辑</a>
-                <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+                <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="delSPU()">删除</a>
                 <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addSkuInfo()">增加sku</a>
                 <a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="showSkuInfoList()"> sku列表</a>
             </div>
@@ -81,7 +81,7 @@
         //加载Spu列表
         function reloadSpuList() {
             var ctg3val=$("#ctg3ForSpuList").combobox('getValue');
-            $("#spulist_dg").datagrid({url:'getSpuList?catalog3Id='+ctg3val});
+            $("#spulist_dg")  .datagrid({url:'getSpuList?catalog3Id='+ctg3val});
         }
 
         //添加spu
@@ -98,6 +98,28 @@
                 $('#spu_dlg').dialog('open');
                 $('#spuSaleAttrDg').datagrid({url:''});
                 initSpuInfoDlg();
+            }
+        }
+
+        //删除spu
+        function delSPU() {
+            var attrInfoRow=$("#spulist_dg").datagrid('getSelected');
+            if(attrInfoRow==null || attrInfoRow===undefined || attrInfoRow==""){
+                layer.msg("请选择一条spu！");
+            }else{
+                if(confirm("是否删除 <"+attrInfoRow.spuName+"> spu?")){
+                    //ajax
+                    var attrJson={};
+                    attrJson["id"]=attrInfoRow.id;
+                    $.post("delSPU",attrJson,function(data){
+                        if(data=="success"){
+                            $("#spulist_dg").datagrid("reload");
+                            layer.msg("删除成功！");
+                        }else{
+                            layer.msg("删除失败！");
+                        }
+                    })
+                }
             }
         }
     </script>
